@@ -1,26 +1,26 @@
 # Lecture 02 – Semantic HTML & Structure
 
 ## 1. What I implemented this lecture
-- 
-- 
-- 
+- New GitHub repo
+- Portfolio page
+- This readme
 
 ## 2. Semantic decisions I made (REQUIRED)
 
 Explain at least **three semantic choices** you made in your HTML.
 
 ### Decision 1
-- Element(s) used:<figure>
+- Element(s) used:`<figure>`
 - Where in the page:Project image
 - Why this element is semantically correct:Can add image and a caption for it
 
 ### Decision 2
-- Element(s) used:<footer>
+- Element(s) used:`<footer>`
 - Where in the page:bottom of the page
 - Why this element is semantically correct:footer is typically used for copyright/ownership information
 
 ### Decision 3
-- Element(s) used:<ul>
+- Element(s) used:`<ul>`
 - Where in the page:hobbies/interests
 - Why this element is semantically correct:Automatically adds bullet points for an unnumbered list
 
@@ -35,7 +35,7 @@ Explain at least **three semantic choices** you made in your HTML.
 ---
 
 ## 4. What I learned
-- <ul> for unnumbered list, <figure> for images
+- `<ul>` for unnumbered list, `<figure>` for images
 
 ## 5. What I still need to improve
 - remember to correctly end sections
