@@ -1,4 +1,4 @@
-# Lecture 02 – Semantic HTML & Structure
+# Lecture 02 – Semantic HTML & Structures
 
 ## 1. What I implemented this lecture
 - New GitHub repo
