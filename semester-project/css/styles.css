@@ -1,0 +1,270 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.logo h1 {
+    font-size: 24px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.nav-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.nav-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: none;
+    padding: 12px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    text-align: left;
+}
+
+.nav-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateX(5px);
+}
+
+.nav-btn.active {
+    background: rgba(255, 255, 255, 0.3);
+    font-weight: bold;
+}
+
+/* Main Content */
+.content {
+    padding: 40px;
+    overflow-y: auto;
+}
+
+.section {
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+
+.section.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.section h2 {
+    margin-bottom: 30px;
+    font-size: 28px;
+    color: #667eea;
+}
+
+/* Dashboard Grid */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card h3 {
+    color: #667eea;
+    margin-bottom: 10px;
+}
+
+.stat {
+    font-size: 24px;
+    font-weight: bold;
+    color: #764ba2;
+}
+
+/* Lists */
+.lectures-list,
+.assignments-list,
+.students-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.lecture-item,
+.assignment-item,
+.student-item {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.lecture-item h3,
+.assignment-item h3,
+.student-item h3 {
+    color: #667eea;
+    margin-bottom: 10px;
+}
+
+.lecture-item p,
+.assignment-item p,
+.student-item p {
+    color: #666;
+    font-size: 14px;
+    margin: 8px 0;
+}
+
+.due-date {
+    color: #e74c3c;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.status {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+.status.submitted {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.status.pending {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.status.graded {
+    background-color: #d1ecf1;
+    color: #0c5460;
+}
+
+/* Filters */
+.filters {
+    margin-bottom: 30px;
+    display: flex;
+    gap: 10px;
+}
+
+.filters input,
+.filters select {
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.filters input {
+    flex: 1;
+}
+
+/* Table */
+.grades-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.grades-table thead {
+    background-color: #667eea;
+    color: white;
+}
+
+.grades-table th,
+.grades-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.grades-table tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+.grades-table input {
+    width: 80px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        position: relative;
+        height: auto;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .nav-menu {
+        flex-direction: row;
+        overflow-x: auto;
+        gap: 5px;
+    }
+
+    .nav-btn {
+        white-space: nowrap;
+    }
+
+    .content {
+        padding: 20px;
+    }
+
+    .dashboard-grid,
+    .lectures-list,
+    .assignments-list,
+    .students-list {
+        grid-template-columns: 1fr;
+    }
+}
