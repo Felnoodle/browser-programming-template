@@ -32,6 +32,7 @@ section {
 .kicker { letter-spacing: 1px; }
 .lead { font-size: 18px; }
 #warning { color: crimson; }
+#my_warning { color: orange; }
 
 /* 3. Grouping & descendant */
 h4, p { margin: 0; }
