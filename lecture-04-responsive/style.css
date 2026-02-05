@@ -15,6 +15,7 @@
     --bgColorReverse: var(--lightBG);
     --textColorAlt: var(--lightText);
 }
+
 .lightmode{
     --bgColor: var(--lightBG);
     --textColor: var(--lightText);
