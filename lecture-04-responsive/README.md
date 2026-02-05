@@ -64,3 +64,14 @@ Explain at least **three semantic choices** you made in your HTML.
 
 ## One improvement I want to do next
 - Change projects section to allow adding more projects easily
+
+# Lecture 04 - Javascript
+
+# Features I implemented
+- JS Darkmode toggle
+- CSS file uses variables for colors instead of hardcoded values (easier to change and add features)
+- Click counter in console
+
+# How to test them
+- Click darkmode toggle at top of the page to change background/text colors
+- Console should log every click you make on the page
