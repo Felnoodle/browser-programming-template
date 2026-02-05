@@ -1,5 +1,31 @@
-body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: black; color: white}
-header { background-color: #ee3e8a; color: black; padding: 15px; text-align: center; }
+:root {
+    --darkBG: black;
+    --darkBG_light: #333;
+    --darkText: white;
+    --lightBG: white;
+    --lightBG_light: #ddd;
+    --lightText: black;
+    --magenta: #ee3e8a;
+}
+
+.darkmode{
+    --bgColor: var(--darkBG);
+    --textColor: var(--darkText);
+    --bgColorAlt: var(--darkBG_light);
+    --bgColorReverse: var(--lightBG);
+    --textColorAlt: var(--lightText);
+}
+.lightmode{
+    --bgColor: var(--lightBG);
+    --textColor: var(--lightText);
+    --bgColorAlt: var(--lightBG_light);
+    --bgColorReverse: var(--darkBG);
+    --textColorAlt: var(--darkText);
+}
+
+body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: var(--bgColor); color: var(--textColor); }
+
+header { background-color: var(--magenta); color: black; padding: 15px; text-align: center; }
 h1 { font-size: 32px; margin: 0; }
 h2 { font-size: 24px; margin: 10px 0; }
 h3 { font-size: 20px; margin: 8px 0; }
@@ -9,24 +35,25 @@ main { padding: 20px; }
 section { margin-bottom: 20px; }
 
 /* Navigation Bar */
-.navbar { background-color: #333; overflow: hidden; }
-.navbar a { display:inline-block; color: white; text-decoration: none; padding: 14px 16px; }
-.navbar a:hover { background-color: #ddd; color: black;}
-.navbar ul { list-style-type: none; margin: 0; padding: 0; display: flex; }
+.navbar { background-color: var(--bgColorAlt); display:flex; justify-content: space-between; align-items: center; }
+.navbar a { display:inline-block; color: var(--textColor); text-decoration: none; padding: 14px 16px; }
+.navbar a:hover { background-color: var(--bgColorReverse); color: var(--textColorAlt);}
+.navbar ul { display: flex; list-style-type: none; padding: 0; margin: 0; }
+#darkModeToggle { background-color: var(--magenta); color: black; border: none; padding: 10px 15px; cursor: pointer; margin-right: 10px; }
 
 /* About Me Section */
-#about { background-color: #222; padding: 15px; padding-bottom: 40px; border-radius: 5px; }
+#about { background-color: var(--bgColorAlt); color: var(--textColor); padding: 15px; padding-bottom: 40px; border-radius: 5px; }
 #about ul { list-style-type: none; padding: 5px; }
 .profile { border-radius: 50%; margin-top: 0px; float: left; margin-right: 30px; width: 150px; height: 150px; object-fit: cover; margin-left: 20px; }
 
 /* Projects Section */
-#projects { background-color: #222; padding: 15px; border-radius: 5px; }
+#projects { background-color: var(--bgColorAlt); color: var(--textColor); padding: 15px; border-radius: 5px; }
 .project-figure { margin: 10px 0; }
 .project-figure img { width: 100%; max-width: 400px; border-radius: 5px; }
 .project-figure figcaption { text-align:inherit; font-size: 12px; margin-top: 5px; }
 
 /* Contact Section */
-#contact { background-color: #222; padding: 15px; border-radius: 5px; }
+#contact { background-color: var(--bgColorAlt); color: var(--textColor); padding: 15px; border-radius: 5px; }
 #contact a { color: #ee3e8a; text-decoration: none; }
 #contact a:hover { text-decoration: underline; }
 
