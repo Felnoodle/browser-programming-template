@@ -75,12 +75,3 @@ Explain at least **three semantic choices** you made in your HTML.
 # How to test them
 - Click darkmode toggle at top of the page to change background/text colors
 - Console should log every click you make on the page
-
-# Lecture 05 - DOM, State, Browser APIs
-
-## What I implemented this lecture
-- Skills list
-- Links to projects
-- 2nd project
-- Memory for saved darkmode status
-- Last updated timestamp

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>Joni Dunkel</h1>
+    <p>3rd year IoT student at Savonia University of Applied Sciences</p>
+  </header>
+
+  <nav class="navbar">
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button id="darkModeToggle">Toggle Dark Mode</button>
+  </nav>
+
+  <main id="main">
+    <section id="about">
+      <h2>About Me</h2>
+      <img class="profile" src="profile.jpg" alt="Joni Dunkel"/>
+      <h3>Hobbies:</h3>
+      <ul>
+        <li>Gaming</li>
+        <li>Programming</li>
+        <li>Reading</li>
+        <li>Swimming</li>
+      </ul>
+      <h3>Skills:</h3>
+      <ul>
+        <li>Programming languages: Python, JavaScript, C#</li>
+        <li>Web development: HTML, CSS</li>
+        <li>IoT platforms: Arduino, Raspberry Pi</li>
+        <li>Data analysis: Excel, SQL</li>
+      </ul>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <article>
+        <h3>Project 1: Home CO2 sensor system</h3>
+        <p><a href="https://app.arduino.cc/things/9fa9bd69-2150-4970-9b22-ed114f078ffb/sketch">A monitoring system for home CO2 levels and online dashboard for tracking</a></p>
+          <figure class="project-figure">
+            <img src="co2sensor.jpg" alt="CO2 Sensor System"/>
+            <figcaption>CO2 Sensor System Setup</figcaption>
+          </figure>
+
+      </article>
+
+      <article>
+        <h3>Project 2: Memory Game</h3>
+        <p><a href="https://github.com/felnoodle/MemoryGame">A simple memory game built with C#</a></p>
+          <figure class="project-figure">
+            <img src="memorygame.png" alt="Memory Game"/>
+            <figcaption>Memory Game Screenshot</figcaption>
+          </figure>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p><a href="mailto:joni.dunkel@students.savonia.fi">Email me</a> <a href="https://github.com/felnoodle">GitHub</a></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>©2026 Joni Dunkel</p>
+    <p id="lastUpdated">Last Updated: </p>
+  </footer>
+
+<script src="script.js"></script>
+</body>
+</html>
