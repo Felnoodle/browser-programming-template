@@ -1,116 +1,28 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Browser Programming LMS</title>
-    <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-    <div class="container">
-        <!-- Sidebar Navigation -->
-        <aside class="sidebar">
-            <div class="logo">
-                <h1>BP LMS</h1>
-            </div>
-            <nav class="nav-menu">
-                <button class="nav-btn active" data-section="dashboard">
-                    📊 Dashboard
-                </button>
-                <button class="nav-btn" data-section="lectures">
-                    📚 Lectures
-                </button>
-                <button class="nav-btn" data-section="assignments">
-                    ✏️ Assignments
-                </button>
-                <button class="nav-btn" data-section="students">
-                    👥 Students
-                </button>
-                <button class="nav-btn" data-section="grades">
-                    📈 Grades
-                </button>
-            </nav>
-        </aside>
+  <head>
+    <meta charset="UTF-8" />
+    <title>BrowserDev Bootcamp - AI-Powered Browser Programming Course</title>
+    <meta name="description" content="Master HTML, CSS, and JavaScript with interactive exercises and AI-powered learning recommendations. A bootcamp-style browser programming course." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- TODO: Set the document title to the name of your application -->
+    <title>Lovable App</title>
+    <meta name="description" content="Lovable Generated Project" />
+    <meta name="author" content="Lovable" />
 
-        <!-- Main Content Area -->
-        <main class="content">
-            <!-- Dashboard Section -->
-            <section id="dashboard" class="section active">
-                <h2>Dashboard</h2>
-                <div class="dashboard-grid">
-                    <div class="card">
-                        <h3>Course Overview</h3>
-                        <p>Browser Programming Course</p>
-                        <p class="stat">10 Lectures | 8 Assignments</p>
-                    </div>
-                    <div class="card">
-                        <h3>Students Enrolled</h3>
-                        <p class="stat">25 Students</p>
-                    </div>
-                    <div class="card">
-                        <h3>Pending Submissions</h3>
-                        <p class="stat">12 Assignments</p>
-                    </div>
-                    <div class="card">
-                        <h3>Course Completion</h3>
-                        <p class="stat">60%</p>
-                    </div>
-                </div>
-            </section>
+    <!-- TODO: Update og:title to match your application name -->
+    <meta property="og:title" content="Lovable App" />
+    <meta property="og:description" content="Lovable Generated Project" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
 
-            <!-- Lectures Section -->
-            <section id="lectures" class="section">
-                <h2>Lectures</h2>
-                <div class="lectures-list" id="lecturesList">
-                    <!-- Populated by JavaScript -->
-                </div>
-            </section>
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@Lovable" />
+    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+  </head>
 
-            <!-- Assignments Section -->
-            <section id="assignments" class="section">
-                <h2>Assignments</h2>
-                <div class="assignments-list" id="assignmentsList">
-                    <!-- Populated by JavaScript -->
-                </div>
-            </section>
-
-            <!-- Students Section -->
-            <section id="students" class="section">
-                <h2>Students</h2>
-                <div class="filters">
-                    <input type="text" id="studentSearch" placeholder="Search students...">
-                </div>
-                <div class="students-list" id="studentsList">
-                    <!-- Populated by JavaScript -->
-                </div>
-            </section>
-
-            <!-- Grades Section -->
-            <section id="grades" class="section">
-                <h2>Grades</h2>
-                <div class="filters">
-                    <select id="studentFilter">
-                        <option value="">All Students</option>
-                    </select>
-                </div>
-                <table class="grades-table" id="gradesTable">
-                    <thead>
-                        <tr>
-                            <th>Student</th>
-                            <th>Assignment</th>
-                            <th>Score</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody id="gradesBody">
-                        <!-- Populated by JavaScript -->
-                    </tbody>
-                </table>
-            </section>
-        </main>
-    </div>
-
-    <script src="js/data.js"></script>
-    <script src="js/app.js"></script>
-</body>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
