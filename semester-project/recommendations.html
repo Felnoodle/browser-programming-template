@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Recommendations - BrowserDev Bootcamp</title>
+  <meta name="description" content="Get personalized exercise recommendations based on your learning progress.">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="public/favicon.ico">
+</head>
+<body>
+  <nav id="navbar" class="navbar"></nav>
+
+  <main class="container" style="padding-top:2.5rem;padding-bottom:2.5rem;">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:2rem;">
+      <div>
+        <div class="badge badge-primary" style="display:inline-flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem;">
+          <span id="sparkle-icon"></span> AI-Powered
+        </div>
+        <h1 style="font-size:1.875rem;font-weight:700;margin-bottom:0.5rem;">Recommended for You</h1>
+        <p class="text-muted" id="rec-subtitle"></p>
+      </div>
+      <button id="refresh-btn" class="btn btn-outline btn-sm">
+        <span id="refresh-icon"></span> Refresh
+      </button>
+    </div>
+
+    <!-- How it works -->
+    <div class="card mb-8" style="cursor:default;">
+      <h2 style="font-weight:600;margin-bottom:0.75rem;color:var(--card-foreground);">How AI Recommendations Work</h2>
+      <ul class="space-y-2 text-sm text-muted">
+        <li>• Analyzes tags and topics from your completed exercises</li>
+        <li>• Identifies skill gaps across HTML, CSS, and JavaScript</li>
+        <li>• Suggests exercises at your current or next difficulty level</li>
+        <li>• Encourages breadth across different categories</li>
+      </ul>
+    </div>
+
+    <div id="rec-content"></div>
+  </main>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    renderNavbar('recommendations');
+
+    document.getElementById('sparkle-icon').innerHTML = icon('sparkles', 'icon-sm');
+    document.getElementById('refresh-icon').innerHTML = icon('refreshCw', 'icon');
+
+    const progress = getUserProgress();
+    document.getElementById('rec-subtitle').textContent =
+      `Personalized suggestions based on your ${progress.completedExercises.length} completed exercises and learning patterns.`;
+
+    function loadRecommendations() {
+      const container = document.getElementById('rec-content');
+      container.innerHTML = '<div class="loading-text" style="text-align:center;padding:5rem 0;">Analyzing your learning path...</div>';
+
+      // Simulate async delay
+      setTimeout(() => {
+        const recs = getRecommendations(progress.completedExercises);
+        if (recs.length === 0) {
+          container.innerHTML = '<div style="text-align:center;padding:5rem 0;"><p style="font-size:1.125rem;color:var(--muted-foreground);">🎉 You\'ve completed all exercises! Amazing work.</p></div>';
+        } else {
+          container.innerHTML = '<div class="grid grid-3">' +
+            recs.map(e => exerciseCardHTML(e, false)).join('') +
+            '</div>';
+        }
+      }, 400);
+    }
+
+    document.getElementById('refresh-btn').addEventListener('click', loadRecommendations);
+    loadRecommendations();
+  </script>
+</body>
+</html>

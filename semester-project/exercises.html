@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercises - BrowserDev Bootcamp</title>
+  <meta name="description" content="Browse and complete HTML, CSS, and JavaScript exercises.">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="public/favicon.ico">
+</head>
+<body>
+  <nav id="navbar" class="navbar"></nav>
+
+  <main class="container" style="padding-top:2.5rem;padding-bottom:2.5rem;">
+    <div class="mb-8">
+      <h1 style="font-size:1.875rem;font-weight:700;margin-bottom:0.5rem;">Exercises</h1>
+      <p class="text-muted" id="exercise-count"></p>
+    </div>
+
+    <!-- Filters -->
+    <div style="display:flex;flex-wrap:wrap;gap:1.5rem;margin-bottom:2rem;">
+      <div>
+        <label style="display:block;margin-bottom:0.5rem;font-size:0.75rem;font-weight:500;text-transform:uppercase;letter-spacing:0.05em;color:var(--muted-foreground);">Category</label>
+        <div id="cat-filters" style="display:flex;flex-wrap:wrap;gap:0.5rem;"></div>
+      </div>
+      <div>
+        <label style="display:block;margin-bottom:0.5rem;font-size:0.75rem;font-weight:500;text-transform:uppercase;letter-spacing:0.05em;color:var(--muted-foreground);">Difficulty</label>
+        <div id="diff-filters" style="display:flex;flex-wrap:wrap;gap:0.5rem;"></div>
+      </div>
+    </div>
+
+    <div class="grid grid-3" id="exercise-grid"></div>
+    <p id="no-results" class="text-muted text-center" style="padding:3rem 0;display:none;">No exercises match your filters.</p>
+  </main>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    renderNavbar('exercises');
+
+    const categories = ['All', 'HTML', 'CSS', 'JavaScript'];
+    const difficulties = ['All', 'beginner', 'intermediate', 'advanced'];
+    let selectedCat = 'All';
+    let selectedDiff = 'All';
+    const progress = getUserProgress();
+
+    document.getElementById('exercise-count').textContent =
+      `${progress.completedExercises.length}/${exercises.length} completed`;
+
+    function renderFilters() {
+      document.getElementById('cat-filters').innerHTML = categories.map(c =>
+        `<button class="filter-btn ${selectedCat === c ? 'active' : ''}" data-cat="${c}">${c}</button>`
+      ).join('');
+      document.getElementById('diff-filters').innerHTML = difficulties.map(d =>
+        `<button class="filter-btn capitalize ${selectedDiff === d ? 'active' : ''}" data-diff="${d}">${d}</button>`
+      ).join('');
+    }
+
+    function renderGrid() {
+      const filtered = exercises.filter(e => {
+        const catMatch = selectedCat === 'All' || e.category === selectedCat;
+        const diffMatch = selectedDiff === 'All' || e.difficulty === selectedDiff;
+        return catMatch && diffMatch;
+      });
+
+      const grid = document.getElementById('exercise-grid');
+      const noResults = document.getElementById('no-results');
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '';
+        noResults.style.display = 'block';
+      } else {
+        noResults.style.display = 'none';
+        grid.innerHTML = filtered.map(e =>
+          exerciseCardHTML(e, progress.completedExercises.includes(e.id))
+        ).join('');
+      }
+    }
+
+    document.getElementById('cat-filters').addEventListener('click', e => {
+      if (e.target.dataset.cat) { selectedCat = e.target.dataset.cat; renderFilters(); renderGrid(); }
+    });
+    document.getElementById('diff-filters').addEventListener('click', e => {
+      if (e.target.dataset.diff) { selectedDiff = e.target.dataset.diff; renderFilters(); renderGrid(); }
+    });
+
+    renderFilters();
+    renderGrid();
+  </script>
+</body>
+</html>

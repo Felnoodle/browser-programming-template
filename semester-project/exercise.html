@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercise - BrowserDev Bootcamp</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="public/favicon.ico">
+</head>
+<body>
+  <nav id="navbar" class="navbar"></nav>
+
+  <main class="container" style="padding-top:2.5rem;padding-bottom:2.5rem;" id="content">
+    <div class="loading-text" style="text-align:center;padding:5rem 0;">Loading exercise...</div>
+  </main>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    renderNavbar('exercises');
+
+    const params = new URLSearchParams(window.location.search);
+    const exerciseId = params.get('id');
+    const exercise = exercises.find(e => e.id === exerciseId);
+    const content = document.getElementById('content');
+
+    if (!exercise) {
+      content.innerHTML = `
+        <p class="text-destructive">Error: Exercise not found</p>
+        <a href="exercises.html" class="text-primary" style="display:inline-block;margin-top:1rem;">← Back to exercises</a>
+      `;
+    } else {
+      let progress = getUserProgress();
+      let isCompleted = progress.completedExercises.includes(exercise.id);
+      let showHints = false;
+      let showSolution = false;
+      let code = exercise.starterCode;
+
+      function render() {
+        document.title = `${exercise.title} - BrowserDev Bootcamp`;
+        content.innerHTML = `
+          <a href="exercises.html" style="display:inline-flex;align-items:center;gap:0.25rem;font-size:0.875rem;color:var(--muted-foreground);margin-bottom:1.5rem;">
+            ${icon('arrowLeft', 'icon')} Back to exercises
+          </a>
+
+          <!-- Header -->
+          <div class="mb-8">
+            <div style="display:flex;flex-wrap:wrap;align-items:center;gap:0.75rem;margin-bottom:0.75rem;">
+              <span class="badge">${exercise.category}</span>
+              <span class="mono text-xs text-muted capitalize">${exercise.difficulty}</span>
+              <span class="mono text-xs text-primary" style="display:flex;align-items:center;gap:0.25rem;">
+                ${icon('zap', 'icon-sm')} ${exercise.xp} XP
+              </span>
+              ${isCompleted ? `<span class="text-accent text-xs" style="display:flex;align-items:center;gap:0.25rem;">${icon('checkCircle', 'icon')} Completed</span>` : ''}
+            </div>
+            <h1 style="font-size:1.875rem;font-weight:700;margin-bottom:0.75rem;">${exercise.title}</h1>
+            <p class="text-muted">${escapeHtml(exercise.description)}</p>
+          </div>
+
+          <!-- Instructions -->
+          <div class="card mb-6" style="cursor:default;">
+            <h2 style="font-size:1.125rem;font-weight:600;margin-bottom:0.75rem;">Instructions</h2>
+            <p class="text-sm text-muted" style="line-height:1.7;">${escapeHtml(exercise.instructions)}</p>
+          </div>
+
+          <!-- Hints -->
+          <div class="mb-6">
+            <button id="toggle-hints" style="display:flex;align-items:center;gap:0.5rem;font-size:0.875rem;font-weight:500;color:var(--primary);background:none;border:none;padding:0;">
+              ${showHints ? icon('chevronUp', 'icon') : icon('chevronDown', 'icon')}
+              ${showHints ? 'Hide Hints' : 'Show Hints'} (${exercise.hints.length})
+            </button>
+            ${showHints ? `
+              <ul style="margin-top:0.75rem;padding-left:1.5rem;" class="space-y-2">
+                ${exercise.hints.map(h => `<li style="list-style:disc;font-size:0.875rem;color:var(--muted-foreground);">${escapeHtml(h)}</li>`).join('')}
+              </ul>
+            ` : ''}
+          </div>
+
+          <!-- Code Editor -->
+          <div class="mb-6">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.5rem;">
+              <h2 style="font-size:1.125rem;font-weight:600;">Your Code</h2>
+              <button id="reset-code" class="btn btn-outline btn-sm mono">Reset</button>
+            </div>
+            <textarea id="code-editor" class="code-editor" spellcheck="false">${escapeHtml(code)}</textarea>
+          </div>
+
+          <!-- Actions -->
+          <div style="display:flex;flex-wrap:wrap;gap:0.75rem;margin-bottom:2rem;">
+            ${!isCompleted ? `<button id="complete-btn" class="btn btn-primary">${icon('checkCircle', 'icon')} Mark as Complete</button>` : ''}
+            <button id="toggle-solution" class="btn btn-outline">
+              ${showSolution ? icon('eyeOff', 'icon') + ' Hide Solution' : icon('eye', 'icon') + ' View Solution'}
+            </button>
+          </div>
+
+          <!-- Solution -->
+          ${showSolution ? `
+            <div class="solution-block">
+              <h2 style="font-size:1.125rem;font-weight:600;color:var(--primary);margin-bottom:0.75rem;">Solution</h2>
+              <pre>${escapeHtml(exercise.solution)}</pre>
+            </div>
+          ` : ''}
+        `;
+
+        // Event listeners
+        document.getElementById('toggle-hints').addEventListener('click', () => {
+          showHints = !showHints;
+          render();
+        });
+
+        document.getElementById('toggle-solution').addEventListener('click', () => {
+          showSolution = !showSolution;
+          render();
+        });
+
+        document.getElementById('reset-code').addEventListener('click', () => {
+          code = exercise.starterCode;
+          render();
+        });
+
+        const editor = document.getElementById('code-editor');
+        editor.addEventListener('input', (e) => { code = e.target.value; });
+
+        const completeBtn = document.getElementById('complete-btn');
+        if (completeBtn) {
+          completeBtn.addEventListener('click', () => {
+            completeExercise(exercise.id);
+            isCompleted = true;
+            render();
+          });
+        }
+      }
+
+      render();
+    }
+  </script>
+</body>
+</html>

@@ -1,28 +1,100 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>BrowserDev Bootcamp - AI-Powered Browser Programming Course</title>
-    <meta name="description" content="Master HTML, CSS, and JavaScript with interactive exercises and AI-powered learning recommendations. A bootcamp-style browser programming course." />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- TODO: Set the document title to the name of your application -->
-    <title>Lovable App</title>
-    <meta name="description" content="Lovable Generated Project" />
-    <meta name="author" content="Lovable" />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BrowserDev Bootcamp - Learn to Code for the Browser</title>
+  <meta name="description" content="Master HTML, CSS, and JavaScript through interactive exercises with AI-powered recommendations.">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" type="image/x-icon" href="public/favicon.ico">
+  <meta property="og:title" content="BrowserDev Bootcamp - Learn to Code for the Browser">
+  <meta name="twitter:title" content="BrowserDev Bootcamp - Learn to Code for the Browser">
+  <meta property="og:description" content="Master HTML, CSS, and JavaScript through interactive exercises with AI-powered recommendations.">
+  <meta name="twitter:description" content="Master HTML, CSS, and JavaScript through interactive exercises with AI-powered recommendations.">
+  <meta property="og:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/be3865d7-c857-4b73-9482-7968800258f1/id-preview-1e2eda23--edc27ee4-69f3-4daa-9a32-327dd862d0da.lovable.app-1773834191580.png">
+  <meta name="twitter:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/be3865d7-c857-4b73-9482-7968800258f1/id-preview-1e2eda23--edc27ee4-69f3-4daa-9a32-327dd862d0da.lovable.app-1773834191580.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:type" content="website">
+</head>
+<body>
+  <nav id="navbar" class="navbar"></nav>
 
-    <!-- TODO: Update og:title to match your application name -->
-    <meta property="og:title" content="Lovable App" />
-    <meta property="og:description" content="Lovable Generated Project" />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container" style="text-align:center;">
+        <div class="badge-primary badge mono" style="display:inline-flex;align-items:center;gap:0.5rem;margin-bottom:1.5rem;padding:0.375rem 1rem;">
+          <span id="hero-icon"></span>
+          Browser Programming Bootcamp
+        </div>
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@Lovable" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-  </head>
+        <h1 style="max-width:48rem;margin:0 auto 1.5rem;font-size:2.25rem;font-weight:800;line-height:1.1;">
+          <span class="gradient-text">Learn to Code</span><br>for the Browser
+        </h1>
 
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+        <p style="max-width:32rem;margin:0 auto 2.5rem;font-size:1.125rem;color:var(--muted-foreground);">
+          Master HTML, CSS, and JavaScript through interactive exercises. 
+          Our AI engine adapts to your progress and recommends the perfect next challenge.
+        </p>
+
+        <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;" id="hero-buttons"></div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="section-border" style="padding:5rem 0;">
+      <div class="container">
+        <div class="grid grid-3" id="features"></div>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="section-border bg-card" style="padding:3rem 0;">
+      <div class="container" style="display:flex;flex-wrap:wrap;justify-content:center;gap:3rem;text-align:center;">
+        <div>
+          <p style="font-size:1.875rem;font-weight:700;color:var(--primary);">12</p>
+          <p class="text-sm text-muted">Exercises</p>
+        </div>
+        <div>
+          <p style="font-size:1.875rem;font-weight:700;color:var(--accent);">3</p>
+          <p class="text-sm text-muted">Categories</p>
+        </div>
+        <div>
+          <p style="font-size:1.875rem;font-weight:700;color:var(--foreground);">3</p>
+          <p class="text-sm text-muted">Difficulty Levels</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    renderNavbar('home');
+
+    document.getElementById('hero-icon').innerHTML = icon('code2', 'icon-sm');
+
+    const progress = getUserProgress();
+    let btns = `<a href="exercises.html" class="btn btn-primary">Start Learning ${icon('arrowRight', 'icon')}</a>`;
+    if (progress.completedExercises.length > 0) {
+      btns += `<a href="progress.html" class="btn btn-outline">View Progress (${progress.totalXp} XP)</a>`;
+    }
+    document.getElementById('hero-buttons').innerHTML = btns;
+
+    const features = [
+      { icon: 'terminal', title: 'Hands-on Exercises', desc: 'Practice HTML, CSS, and JavaScript with real coding challenges and instant feedback.' },
+      { icon: 'sparkles', title: 'AI Recommendations', desc: 'Get personalized exercise suggestions based on your learning progress and skill gaps.' },
+      { icon: 'cpu', title: 'Browser Programming', desc: 'Master DOM manipulation, async APIs, responsive design, and modern web architecture.' },
+    ];
+    document.getElementById('features').innerHTML = features.map(f => `
+      <div class="card" style="cursor:default;">
+        <div style="display:inline-flex;padding:0.75rem;border-radius:0.5rem;background:hsla(175,80%,50%,0.1);margin-bottom:1rem;">
+          <span class="text-primary">${icon(f.icon, 'icon-lg')}</span>
+        </div>
+        <h3 style="margin-bottom:0.5rem;font-size:1.125rem;font-weight:600;color:var(--card-foreground);">${f.title}</h3>
+        <p class="text-sm text-muted">${f.desc}</p>
+      </div>
+    `).join('');
+  </script>
+</body>
 </html>

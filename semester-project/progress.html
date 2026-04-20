@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Progress - BrowserDev Bootcamp</title>
+  <meta name="description" content="Track your learning progress across HTML, CSS, and JavaScript exercises.">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="public/favicon.ico">
+</head>
+<body>
+  <nav id="navbar" class="navbar"></nav>
+
+  <main class="container" style="padding-top:2.5rem;padding-bottom:2.5rem;">
+    <h1 style="font-size:1.875rem;font-weight:700;margin-bottom:2rem;">Your Progress</h1>
+
+    <!-- Stats -->
+    <div class="grid grid-3 mb-10" id="stats"></div>
+
+    <!-- Overall Progress -->
+    <div class="mb-10" id="overall-progress"></div>
+
+    <!-- Category Breakdown -->
+    <div class="mb-10" id="category-breakdown"></div>
+
+    <!-- CTA -->
+    <div id="cta" style="text-align:center;"></div>
+  </main>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    renderNavbar('progress');
+
+    const progress = getUserProgress();
+    const totalXpPossible = exercises.reduce((sum, e) => sum + e.xp, 0);
+    const completedExercises = exercises.filter(e => progress.completedExercises.includes(e.id));
+    const percentComplete = exercises.length ? Math.round((completedExercises.length / exercises.length) * 100) : 0;
+
+    // Stats
+    document.getElementById('stats').innerHTML = `
+      <div class="stat-card">
+        <div class="text-primary" style="display:flex;justify-content:center;margin-bottom:0.5rem;">${icon('zap', 'icon-xl')}</div>
+        <p style="font-size:1.875rem;font-weight:700;color:var(--primary);">${progress.totalXp}</p>
+        <p class="text-sm text-muted">of ${totalXpPossible} XP</p>
+      </div>
+      <div class="stat-card">
+        <div class="text-accent" style="display:flex;justify-content:center;margin-bottom:0.5rem;">${icon('bookOpen', 'icon-xl')}</div>
+        <p style="font-size:1.875rem;font-weight:700;color:var(--accent);">${completedExercises.length}</p>
+        <p class="text-sm text-muted">of ${exercises.length} exercises</p>
+      </div>
+      <div class="stat-card">
+        <div class="text-warning" style="display:flex;justify-content:center;margin-bottom:0.5rem;">${icon('trophy', 'icon-xl')}</div>
+        <p style="font-size:1.875rem;font-weight:700;">${percentComplete}%</p>
+        <p class="text-sm text-muted">complete</p>
+      </div>
+    `;
+
+    // Overall Progress Bar
+    document.getElementById('overall-progress').innerHTML = `
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.5rem;font-size:0.875rem;">
+        <span class="text-muted">Overall Progress</span>
+        <span class="mono text-primary">${percentComplete}%</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" style="width:${percentComplete}%;"></div>
+      </div>
+    `;
+
+    // Category Breakdown
+    const categoryCounts = {};
+    exercises.forEach(e => {
+      if (!categoryCounts[e.category]) categoryCounts[e.category] = { total: 0, completed: 0 };
+      categoryCounts[e.category].total++;
+      if (progress.completedExercises.includes(e.id)) categoryCounts[e.category].completed++;
+    });
+
+    document.getElementById('category-breakdown').innerHTML = `
+      <h2 style="font-size:1.25rem;font-weight:600;margin-bottom:1rem;">By Category</h2>
+      <div class="space-y-4">
+        ${Object.entries(categoryCounts).map(([cat, { total, completed }]) => {
+          const pct = Math.round((completed / total) * 100);
+          return `
+            <div>
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.25rem;font-size:0.875rem;">
+                <span class="mono">${cat}</span>
+                <span class="text-muted">${completed}/${total}</span>
+              </div>
+              <div class="progress-bar progress-bar-sm">
+                <div class="progress-fill progress-fill-primary" style="width:${pct}%;"></div>
+              </div>
+            </div>
+          `;
+        }).join('')}
+      </div>
+    `;
+
+    // CTA
+    if (percentComplete < 100) {
+      document.getElementById('cta').innerHTML = `
+        <a href="recommendations.html" class="btn btn-primary">
+          Get AI Recommendations ${icon('arrowRight', 'icon')}
+        </a>
+      `;
+    }
+  </script>
+</body>
+</html>
