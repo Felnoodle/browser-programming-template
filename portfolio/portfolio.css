@@ -239,6 +239,19 @@ img {
   margin-bottom: 1rem;
 }
 
+.education {
+  margin-bottom: 3rem;
+}
+
+.education-degree {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.education-detail {
+  color: var(--fg-muted);
+}
+
 .about-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
