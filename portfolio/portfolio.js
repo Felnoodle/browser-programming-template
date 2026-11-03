@@ -17,9 +17,9 @@ const projects = [
     tags: ["Python", "Streamlit", "MQTT", "SQLite", "Machine Learning"],
   },
   {
-    title: "TBProject",
+    title: "Turn-Based Unity RPG",
     status: "In development",
-    description: "An RPG made in Unity.",
+    description: "Solo project.",
     image: "images/tbproject.svg",
     source: "https://github.com/Felnoodle/TBProject",
     tags: ["Unity", "C#", "Game Dev"],
