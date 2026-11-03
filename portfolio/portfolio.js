@@ -1,7 +1,7 @@
 // ===== Data =====
 // To add a project, add an object here. `demo` and `source` are optional;
 // each one that is set becomes a button on the card.
-const skills = ["Python", "JavaScript", "C#", "Unity", "HTML", "CSS", "SQL", "MQTT", "Arduino", "Raspberry Pi", "Git", "Excel"];
+const skills = ["Python", "JavaScript", "C#", "Android", "Unity", "HTML", "CSS", "SQL", "MQTT", "Arduino", "Raspberry Pi", "Git", "Excel"];
 const hobbies = ["Gaming", "Programming", "Reading", "Swimming"];
 const projects = [
   {
