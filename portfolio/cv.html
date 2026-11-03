@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Joni Dunkel — CV</title>
+  <!-- Source for joni-dunkel-cv.pdf. To regenerate, open in Chrome and Print → Save as PDF (A4, no margins, background graphics on). -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    @page { size: A4; margin: 0; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', Arial, sans-serif; color: #1d2130; font-size: 10pt; line-height: 1.45; }
+    .page { width: 210mm; min-height: 297mm; padding: 16mm 18mm; }
+    header { display: flex; align-items: center; gap: 7mm; padding-bottom: 6mm; border-bottom: 2px solid #d946a8; margin-bottom: 7mm; }
+    header img { width: 26mm; height: 26mm; border-radius: 50%; object-fit: cover; }
+    h1 { font-size: 24pt; font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; }
+    .role { color: #d946a8; font-weight: 600; margin: 1mm 0 2mm; }
+    .contact { color: #5a6072; font-size: 9pt; }
+    .contact span + span::before { content: "·"; margin: 0 2mm; }
+    h2 { font-size: 9pt; text-transform: uppercase; letter-spacing: 0.12em; color: #d946a8; margin: 6mm 0 2.5mm; }
+    .summary { color: #33384a; }
+    .item { margin-bottom: 3.5mm; }
+    .item-head { display: flex; justify-content: space-between; gap: 4mm; }
+    .item-title { font-weight: 600; }
+    .item-meta { color: #5a6072; font-size: 9pt; white-space: nowrap; }
+    .item p { color: #33384a; }
+    .tech { color: #5a6072; font-size: 8.5pt; margin-top: 0.5mm; }
+    .skills { display: flex; flex-wrap: wrap; gap: 1.5mm; }
+    .skills span { border: 1px solid #d8dbe4; border-radius: 99px; padding: 0.6mm 3mm; font-size: 9pt; }
+    a { color: inherit; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <img src="images/profile.jpg" alt="" />
+      <div>
+        <h1>Joni Dunkel</h1>
+        <p class="role">IT Engineering Student · Internet of Things</p>
+        <p class="contact">
+          <span><a href="mailto:joni.dunkel@edu.savonia.fi">joni.dunkel@edu.savonia.fi</a></span>
+          <span><a href="https://github.com/felnoodle">github.com/felnoodle</a></span>
+        </p>
+      </div>
+    </header>
+
+    <p class="summary">
+      IT engineering student specialising in the Internet of Things. I build apps that turn data into something
+      people can use, from sensor dashboards to games. Looking for an internship.
+    </p>
+
+    <h2>Education</h2>
+    <div class="item">
+      <div class="item-head">
+        <span class="item-title">Bachelor of Engineering, Information Technology (Internet of Things)</span>
+        <span class="item-meta">Expected 2028</span>
+      </div>
+      <p>Savonia University of Applied Sciences</p>
+      <p class="tech">Coursework includes mobile programming (Android), browser programming and IoT systems</p>
+    </div>
+
+    <h2>Projects</h2>
+    <div class="item">
+      <div class="item-head">
+        <span class="item-title">Predictive Maintenance Dashboard</span>
+        <span class="item-meta">Group project</span>
+      </div>
+      <p>IoT system that turns live sensor data into a health index, alerts and a remaining-useful-life estimate.
+        Sensors publish over MQTT, an ingestion service scores readings on arrival, and a Streamlit dashboard ranks
+        the fleet by maintenance priority and lets technicians dispatch work orders.</p>
+      <p class="tech">Python · Streamlit · MQTT · SQLite · Machine Learning</p>
+    </div>
+    <div class="item">
+      <div class="item-head">
+        <span class="item-title">TBProject</span>
+        <span class="item-meta">In development</span>
+      </div>
+      <p>An RPG made in Unity.</p>
+      <p class="tech">Unity · C#</p>
+    </div>
+    <div class="item">
+      <div class="item-head"><span class="item-title">Home CO2 Sensor System</span></div>
+      <p>A sensor that monitors CO2 levels at home, with an online dashboard for tracking them over time.</p>
+      <p class="tech">Arduino · IoT · Arduino Cloud</p>
+    </div>
+    <div class="item">
+      <div class="item-head"><span class="item-title">Memory Game</span></div>
+      <p>A card-matching memory game built with C#.</p>
+      <p class="tech">C#</p>
+    </div>
+    <div class="item">
+      <div class="item-head"><span class="item-title">Portfolio website</span></div>
+      <p>This CV's companion site, built with plain HTML, CSS and JavaScript.</p>
+      <p class="tech">HTML · CSS · JavaScript</p>
+    </div>
+
+    <h2>Skills</h2>
+    <div class="skills">
+      <span>Python</span><span>JavaScript</span><span>C#</span><span>Android</span><span>Unity</span><span>HTML</span>
+      <span>CSS</span><span>SQL</span><span>MQTT</span><span>Arduino</span><span>Raspberry Pi</span><span>Git</span><span>Excel</span>
+    </div>
+
+    <h2>Interests</h2>
+    <p class="summary">Gaming, programming, reading, swimming</p>
+  </div>
+</body>
+</html>
