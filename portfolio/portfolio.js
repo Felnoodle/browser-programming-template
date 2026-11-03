@@ -11,6 +11,7 @@ const projects = [
       "IoT system that turns live sensor data into a health index, alerts and a remaining-useful-life estimate. " +
       "Sensors publish over MQTT, an ingestion service scores readings on arrival, and a Streamlit dashboard " +
       "ranks the fleet by maintenance priority and lets technicians dispatch work orders.",
+    role: "Built the Streamlit dashboard and led development of the live MQTT data pipeline, the remaining-useful-life model and the work-order flow, using Claude Code for AI-assisted development.",
     image: "images/pdm-dashboard.svg",
     demo: "https://predictive-maintenance-dashboard-3ldxwrb9s9av4egmvykm9k.streamlit.app",
     source: "https://github.com/AhmedGoda1/Predictive-Maintenance-Dashboard",
@@ -92,6 +93,12 @@ projects.forEach(function (project) {
   if (project.status) body.appendChild(el("span", "project-status", project.status));
   body.appendChild(el("h3", null, project.title));
   body.appendChild(el("p", null, project.description));
+  if (project.role) {
+    const role = el("p", "project-role");
+    role.appendChild(el("strong", null, "My part: "));
+    role.appendChild(document.createTextNode(project.role));
+    body.appendChild(role);
+  }
 
   const tags = el("ul", "project-tags");
   tags.setAttribute("aria-label", "Technologies");
