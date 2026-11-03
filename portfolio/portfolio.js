@@ -1,84 +1,138 @@
 // ===== Data =====
-const skills = ["Python", "JavaScript", "C#", "HTML", "CSS", "Arduino", "Raspberry Pi", "SQL", "Excel"];
+// To add a project, add an object here. `demo` and `source` are optional;
+// each one that is set becomes a button on the card.
+const skills = ["Python", "JavaScript", "C#", "Unity", "HTML", "CSS", "SQL", "MQTT", "Arduino", "Raspberry Pi", "Git", "Excel"];
 const hobbies = ["Gaming", "Programming", "Reading", "Swimming"];
 const projects = [
   {
+    title: "Predictive Maintenance Dashboard",
+    status: "Group project",
+    description:
+      "IoT system that turns live sensor data into a health index, alerts and a remaining-useful-life estimate. " +
+      "Sensors publish over MQTT, an ingestion service scores readings on arrival, and a Streamlit dashboard " +
+      "ranks the fleet by maintenance priority and lets technicians dispatch work orders.",
+    image: "images/pdm-dashboard.svg",
+    demo: "https://predictive-maintenance-dashboard-3ldxwrb9s9av4egmvykm9k.streamlit.app",
+    source: "https://github.com/AhmedGoda1/Predictive-Maintenance-Dashboard",
+    tags: ["Python", "Streamlit", "MQTT", "SQLite", "Machine Learning"],
+  },
+  {
+    title: "TBProject — Turn-Based RPG",
+    status: "In development",
+    description:
+      "An isometric turn-based RPG in Unity 6, inspired by Finnish folklore. A party of animal companions, " +
+      "each tied to an element, fights blight in Press Turn battles. Branching story in Ink, " +
+      "game rules in plain C# covered by unit tests.",
+    image: "images/tbproject.svg",
+    source: "https://github.com/Felnoodle/TBProject",
+    tags: ["Unity", "C#", "Ink", "Game Dev"],
+  },
+  {
     title: "Home CO2 Sensor System",
-    description: "A monitoring system for home CO2 levels and online dashboard for tracking.",
-    image: "https://raw.githubusercontent.com/Felnoodle/browser-programming-template/main/lecture-05-dom-data/co2sensor.jpg",
-    link: "https://app.arduino.cc/things/9fa9bd69-2150-4970-9b22-ed114f078ffb/sketch",
+    description: "A sensor that monitors CO2 levels at home, with an online dashboard for tracking them over time.",
+    image: "images/co2sensor.jpg",
+    source: "https://app.arduino.cc/things/9fa9bd69-2150-4970-9b22-ed114f078ffb/sketch",
+    sourceLabel: "Arduino Cloud",
     tags: ["Arduino", "IoT", "Dashboard"],
   },
   {
     title: "Memory Game",
-    description: "A simple memory game built with C#.",
-    image: "https://raw.githubusercontent.com/Felnoodle/browser-programming-template/main/lecture-05-dom-data/memorygame.png",
-    link: "https://github.com/felnoodle/MemoryGame",
+    description: "A card-matching memory game built with C#.",
+    image: "images/memorygame.png",
+    source: "https://github.com/felnoodle/MemoryGame",
     tags: ["C#", "Game Dev"],
   },
 ];
 
+// ===== Helpers =====
+function el(tag, className, text) {
+  const node = document.createElement(tag);
+  if (className) node.className = className;
+  if (text) node.textContent = text;
+  return node;
+}
+
+function linkButton(href, label, primary) {
+  const a = el("a", "btn btn-small " + (primary ? "btn-primary" : "btn-outline"), label);
+  a.href = href;
+  a.target = "_blank";
+  a.rel = "noopener noreferrer";
+  return a;
+}
+
 // ===== Populate Skills =====
 const skillContainer = document.getElementById("skill-tags");
 skills.forEach(function (skill) {
-  const span = document.createElement("span");
-  span.className = "skill-tag";
-  span.textContent = skill;
-  skillContainer.appendChild(span);
+  const li = el("li", "skill-tag", skill);
+  skillContainer.appendChild(li);
 });
 
 // ===== Populate Hobbies =====
 const hobbyList = document.getElementById("hobby-list");
 hobbies.forEach(function (hobby) {
-  const li = document.createElement("li");
-  li.className = "hobby-item";
-  li.innerHTML = '<span class="hobby-dot"></span>' + hobby;
+  const li = el("li", "hobby-item");
+  li.appendChild(el("span", "hobby-dot"));
+  li.appendChild(document.createTextNode(hobby));
   hobbyList.appendChild(li);
 });
 
 // ===== Populate Projects =====
 const projectsGrid = document.getElementById("projects-grid");
 projects.forEach(function (project) {
-  const card = document.createElement("a");
-  card.href = project.link;
-  card.target = "_blank";
-  card.rel = "noopener noreferrer";
-  card.className = "project-card fade-in";
+  const card = el("article", "project-card fade-in");
 
-  var tagsHTML = "";
+  const imgWrap = el("div", "project-card-img");
+  const img = document.createElement("img");
+  img.src = project.image;
+  img.alt = "Preview of " + project.title;
+  img.loading = "lazy";
+  img.width = 640;
+  img.height = 360;
+  imgWrap.appendChild(img);
+  card.appendChild(imgWrap);
+
+  const body = el("div", "project-card-body");
+  if (project.status) body.appendChild(el("span", "project-status", project.status));
+  body.appendChild(el("h3", null, project.title));
+  body.appendChild(el("p", null, project.description));
+
+  const tags = el("ul", "project-tags");
+  tags.setAttribute("aria-label", "Technologies");
   project.tags.forEach(function (tag) {
-    tagsHTML += '<span class="project-tag">' + tag + "</span>";
+    tags.appendChild(el("li", "project-tag", tag));
   });
+  body.appendChild(tags);
 
-  card.innerHTML =
-    '<div class="project-card-img"><img src="' + project.image + '" alt="' + project.title + '" /></div>' +
-    '<div class="project-card-body">' +
-    "<h3>" + project.title + "</h3>" +
-    "<p>" + project.description + "</p>" +
-    '<div class="project-tags">' + tagsHTML + "</div>" +
-    "</div>";
+  const links = el("div", "project-links");
+  if (project.demo) links.appendChild(linkButton(project.demo, "Live demo", true));
+  if (project.source) links.appendChild(linkButton(project.source, project.sourceLabel || "Source code", !project.demo));
+  body.appendChild(links);
 
+  card.appendChild(body);
   projectsGrid.appendChild(card);
 });
 
 // ===== Footer Year =====
-var footerText = document.getElementById("footer-text");
-footerText.textContent = "\u00A9 " + new Date().getFullYear() + " Joni Dunkel. All rights reserved.";
+document.getElementById("footer-year").textContent = new Date().getFullYear();
 
 // ===== Scroll Fade-In =====
-var fadeEls = document.querySelectorAll(".fade-in");
-
-var observer = new IntersectionObserver(
-  function (entries) {
-    entries.forEach(function (entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-      }
-    });
-  },
-  { threshold: 0.1 }
-);
-
-fadeEls.forEach(function (el) {
-  observer.observe(el);
-});
+// Content is visible by default; the fade only applies once JS has run,
+// so the page still works if the script fails or animations are reduced.
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+if (!reduceMotion && "IntersectionObserver" in window) {
+  document.documentElement.classList.add("js-fade");
+  const observer = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
+  document.querySelectorAll(".fade-in").forEach(function (node) {
+    observer.observe(node);
+  });
+}
