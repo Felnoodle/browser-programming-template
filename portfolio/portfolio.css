@@ -248,6 +248,10 @@ img {
   font-weight: 600;
 }
 
+.education-degree--next {
+  margin-top: 1rem;
+}
+
 .education-detail {
   color: var(--fg-muted);
 }
