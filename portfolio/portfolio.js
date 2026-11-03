@@ -8,9 +8,7 @@ const projects = [
     title: "Predictive Maintenance Dashboard",
     status: "Group project",
     description:
-      "IoT system that turns live sensor data into a health index, alerts and a remaining-useful-life estimate. " +
-      "Sensors publish over MQTT, an ingestion service scores readings on arrival, and a Streamlit dashboard " +
-      "ranks the fleet by maintenance priority and lets technicians dispatch work orders.",
+      "IoT system that turns live sensor data into health scores, alerts and remaining-life estimates, shown in a dashboard where technicians prioritise maintenance and dispatch work orders.",
     role: "Built the Streamlit dashboard and led development of the live MQTT data pipeline, the remaining-useful-life model and the work-order flow, using Claude Code for AI-assisted development.",
     image: "images/pdm-dashboard.svg",
     demo: "https://predictive-maintenance-dashboard-3ldxwrb9s9av4egmvykm9k.streamlit.app",
