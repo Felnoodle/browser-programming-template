@@ -401,6 +401,15 @@ img {
   margin-bottom: 1rem;
 }
 
+.project-card-body .project-role {
+  color: var(--fg);
+}
+
+.project-role strong {
+  color: var(--primary);
+  font-weight: 600;
+}
+
 .project-tags {
   display: flex;
   flex-wrap: wrap;
