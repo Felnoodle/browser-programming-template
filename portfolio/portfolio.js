@@ -17,15 +17,12 @@ const projects = [
     tags: ["Python", "Streamlit", "MQTT", "SQLite", "Machine Learning"],
   },
   {
-    title: "TBProject — Turn-Based RPG",
+    title: "TBProject",
     status: "In development",
-    description:
-      "An isometric turn-based RPG in Unity 6, inspired by Finnish folklore. A party of animal companions, " +
-      "each tied to an element, fights blight in Press Turn battles. Branching story in Ink, " +
-      "game rules in plain C# covered by unit tests.",
+    description: "An RPG made in Unity.",
     image: "images/tbproject.svg",
     source: "https://github.com/Felnoodle/TBProject",
-    tags: ["Unity", "C#", "Ink", "Game Dev"],
+    tags: ["Unity", "C#", "Game Dev"],
   },
   {
     title: "Home CO2 Sensor System",
